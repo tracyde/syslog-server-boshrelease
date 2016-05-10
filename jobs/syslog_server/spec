@@ -6,6 +6,7 @@ templates:
   rsyslog.conf.erb: config/rsyslog.conf
   logrotate.conf.erb: config/logrotate.conf
   logrotate.cron.erb: config/logrotate.cron
+  drain-incoming-logs.erb: bin/drain
 
 provides:
 - name: syslog_server
