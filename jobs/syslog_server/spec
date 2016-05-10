@@ -1,0 +1,35 @@
+---
+name: syslog_server
+
+templates:
+  pre-start.erb: bin/pre-start
+  rsyslog.conf.erb: config/rsyslog.conf
+  logrotate.conf.erb: config/logrotate.conf
+  logrotate.cron.erb: config/logrotate.cron
+
+provides:
+- name: syslog_server
+  type: syslog_server
+  properties:
+  - syslog_server.port
+  - syslog_server.transport
+
+properties:
+  syslog_server.port:
+    description: Port of the syslog drain.
+    default: 514
+  syslog_server.transport:
+    default: tcp
+    description: One of `udp`, `tcp`, `relp`.
+
+  syslog_server.custom_rule:
+    default: ""
+    description: Custom rule for syslog event forwarder.
+
+  syslog_server.logrotate.schedule:
+    default: "0 0 * * *"
+    description: Log rotation schedule. In the "* * * * *" cron format.
+
+  syslog_server.logrotate.postrotate:
+    default: ""
+    description: Action to perform after log rotation.

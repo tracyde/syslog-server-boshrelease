@@ -1,0 +1,11 @@
+#!/bin/bash
+set -ex
+
+mkdir -p /var/vcap/store/syslog_server
+mkdir -p /var/vcap/data/syslog_server/buffered
+chown -R syslog:adm /var/vcap/data/syslog_server/buffered
+chown -R syslog:adm /var/vcap/store/syslog_server
+
+cp $(dirname $0)/../config/rsyslog.conf /etc/rsyslog.conf
+(crontab -l | sed /syslog_server.*logrotate/d; cat /var/vcap/jobs/syslog_server/config/logrotate.cron) | sed /^$/d | crontab
+service rsyslog restart

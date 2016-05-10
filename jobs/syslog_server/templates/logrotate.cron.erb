@@ -1,0 +1,1 @@
+<%= p('syslog_server.logrotate.schedule') %> test -x /usr/sbin/logrotate && /usr/sbin/logrotate /var/vcap/jobs/syslog_server/config/logrotate.conf >>/var/vcap/sys/log/syslog_server/logrotate_cron.log 2>&1

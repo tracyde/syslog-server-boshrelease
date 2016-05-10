@@ -1,0 +1,15 @@
+/var/vcap/store/syslog_server/syslog.log
+{
+        rotate 7
+        size 100k
+        missingok
+        notifempty
+        delaycompress
+        compress
+        postrotate
+                /sbin/reload rsyslog >/dev/null 2>&1 || true
+<% if_p('syslog_server.logrotate.postrotate') do |postrotate| %>
+                <%= postrotate %>
+<% end  %>
+        endscript
+}
