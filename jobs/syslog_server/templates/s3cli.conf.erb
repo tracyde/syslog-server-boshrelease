@@ -1,0 +1,14 @@
+{
+<% if_p('syslog_server.s3_uploads_enabled') %>
+  "credentials_source":"<%= p('syslog_server.s3_credentials_source', 'static') %>",
+  "access_key_id":"<%= p('syslog_server.s3_access_key_id', nil) %>",
+  "secret_access_key":"<%= p('syslog_server.s3_secret_access_key', nil) %>",
+  "region":"<%= p('blobstore.s3_region', 'us-east-1') %>",
+  "signature_version":"<%= p('syslog_server.s3_signature_version', '2') %>",
+  "host":"<%= p('syslog_server.s3_host', 's3.amazonaws.com') %>",
+  "port":"<%= p('syslog_server.s3_port', 0) %>",
+  "use_ssl":<%= p('syslog_server.s3_use_ssl', 'true') %>,
+  "ssl_verify_peer":<%= p('syslog_server.s3_ssl_verify_peer', 'true') %>,
+  "bucket_name":"<%= p('syslog_server.s3_bucket_name') %>"
+<% end %>
+}

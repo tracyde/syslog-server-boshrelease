@@ -6,7 +6,11 @@ templates:
   rsyslog.conf.erb: config/rsyslog.conf
   logrotate.conf.erb: config/logrotate.conf
   logrotate.cron.erb: config/logrotate.cron
+  s3cli.conf.erb: config/s3cli.conf
   drain-incoming-logs.erb: bin/drain
+
+packages:
+- s3cli
 
 provides:
 - name: syslog_server
@@ -34,3 +38,44 @@ properties:
   syslog_server.logrotate.postrotate:
     default: ""
     description: Action to perform after log rotation.
+
+  syslog_server.s3_uploads_enabled:
+    description: Send logs to s3 after file rotation (s3 access must be configured)
+    default: false
+
+  syslog_server.s3_credentials_source:
+    description: AWS Credential Source (static / env_or_profile)
+    default: 'static'
+
+  syslog_server.s3_access_key_id:
+    description: AWS access_key_id used for s3
+
+  syslog_server.s3_secret_access_key:
+    description: AWS secret_access_key used for s3
+
+  syslog_server.s3_region:
+    description: Region of s3 bucket
+    default: 'us-east-1'
+
+  syslog_server.s3_signature_version:
+    description: Signature version of the blobstore used by s3
+    default: 2
+
+  syslog_server.s3_host:
+    description: Url of the s3 endpoint
+    default: 's3.amazonaws.com'
+
+  syslog_server.s3_port:
+    description: Port of the s3 endpoint
+    default: 0
+
+  syslog_server.s3_use_ssl:
+    description: Whether the simple blobstore plugin should use SSL to connect to s3
+    default: true
+
+  syslog_server.s3_ssl_verify_peer:
+    description: Verify the SSL certificate used on s3
+    default: true
+
+  syslog_server.s3_bucket_name:
+    description: AWS S3 Bucket to upload logs
