@@ -1,5 +1,5 @@
 {
-<% if_p('syslog_server.s3_uploads_enabled') %>
+<% if p('syslog_server.s3_uploads_enabled') %>
   "credentials_source":"<%= p('syslog_server.s3_credentials_source', 'static') %>",
   "access_key_id":"<%= p('syslog_server.s3_access_key_id', nil) %>",
   "secret_access_key":"<%= p('syslog_server.s3_secret_access_key', nil) %>",
