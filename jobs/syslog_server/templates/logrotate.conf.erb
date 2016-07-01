@@ -9,7 +9,7 @@
         postrotate
                 /sbin/reload rsyslog >/dev/null 2>&1 || true
 <% if p('syslog_server.s3_uploads_enabled') %>
-                /var/vcap/packages/s3cli/bin/s3cli -c /var/vcap/jobs/syslog_server/config/s3cli.conf put /var/vcap/store/syslog_server/syslog.log.2.gz "syslog-<%= spec.index.to_i %>.$(date '+%Y%m%d%H%M%S').log.gz"
+                /var/vcap/packages/s3cli/bin/s3cli -c /var/vcap/jobs/syslog_server/config/s3cli.conf put /var/vcap/store/syslog_server/syslog.log.2.gz "<%= name %>-<%= spec.index.to_i %>.$(date '+%Y%m%d%H%M%S').log.gz"
 <% end %>
 <% if_p('syslog_server.logrotate.postrotate') do |postrotate| %>
                 <%= postrotate %>
