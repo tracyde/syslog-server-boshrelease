@@ -3,7 +3,7 @@
   "credentials_source":"<%= p('syslog_server.s3_credentials_source', 'static') %>",
   "access_key_id":"<%= p('syslog_server.s3_access_key_id', nil) %>",
   "secret_access_key":"<%= p('syslog_server.s3_secret_access_key', nil) %>",
-  "region":"<%= p('blobstore.s3_region', 'us-east-1') %>",
+  "region":"<%= p('syslog_server.s3_region', 'us-east-1') %>",
   "signature_version":"<%= p('syslog_server.s3_signature_version', '2') %>",
   "host":"<%= p('syslog_server.s3_host', 's3.amazonaws.com') %>",
   "port":<%= p('syslog_server.s3_port', 0) %>,
